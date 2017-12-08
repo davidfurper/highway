@@ -1,0 +1,36 @@
+create database highway;
+
+use highway;
+
+create table empresa(
+	rut int not null primary key,
+	nombre varchar(30) not null,
+	direccion varchar(30) not null,
+	comprador varchar(30) not null
+);
+
+
+create table carretera(
+	id int not null primary key,
+	carretera varchar(50) not null,
+	valor int not null
+);
+
+create table pedido(
+	id_pedido int auto_increment primary key,
+	rut int not null,
+	id_carretera int not null,
+	cantidad int not null,
+	forma_pago varchar(30) not null,
+	retiro varchar(20) not null
+);
+
+create table ayuda(
+nombre varchar(50) not null,
+apellido varchar(50) not null,
+mail varchar(50) not null,
+telefono varchar(50) not null,
+mensaje varchar(1000) not null);
+
+alter table pedido add constraint foreign key (rut) references empresa(rut),
+	                add constraint foreign key (id_carretera) references carretera(id);
